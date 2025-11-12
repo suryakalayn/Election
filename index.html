@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Election Monitoring System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Election Monitoring System</h1>
+    <p>Ensuring Fair, Transparent, and Trusted Elections</p>
+    <nav>
+      <a href="#" onclick="showPage('home')">Home</a>
+      <a href="#" onclick="showPage('admin')">Admin</a>
+      <a href="#" onclick="showPage('citizen')">Citizen</a>
+      <a href="#" onclick="showPage('observer')">Observer</a>
+      <a href="#" onclick="showPage('analyst')">Analyst</a>
+    </nav>
+  </header>
+
+  <main id="content">
+    <!-- HOME PAGE -->
+    <section id="home" class="page active">
+      <h2>Select Your Role</h2>
+      <div class="roles">
+        <button class="btn" onclick="showPage('admin')">Admin</button>
+        <button class="btn" onclick="showPage('citizen')">Citizen</button>
+        <button class="btn" onclick="showPage('observer')">Observer</button>
+        <button class="btn" onclick="showPage('analyst')">Analyst</button>
+      </div>
+    </section>
+
+    <!-- ADMIN PAGE -->
+    <section id="admin" class="page">
+      <h2>Admin Dashboard</h2>
+      <p>Manage election data and system security.</p>
+      <button onclick="alert('Election data monitored successfully!')">Monitor Election Data</button>
+      <p class="info">Security Status: ✅ All systems running smoothly</p>
+    </section>
+
+    <!-- CITIZEN PAGE -->
+    <section id="citizen" class="page">
+      <h2>Citizen Portal</h2>
+      <p>Track election process and report issues.</p>
+      <textarea placeholder="Describe the issue..."></textarea><br>
+      <button onclick="alert('Your issue report has been submitted!')">Submit Report</button>
+
+      <h3>Civic Discussion</h3>
+      <input type="text" placeholder="Write your comment...">
+      <button onclick="alert('Comment posted!')">Post Comment</button>
+    </section>
+
+    <!-- OBSERVER PAGE -->
+    <section id="observer" class="page">
+      <h2>Election Observer</h2>
+      <p>Monitor activities and report anomalies.</p>
+      <textarea placeholder="Describe any irregularities..."></textarea><br>
+      <button onclick="alert('Anomaly reported successfully!')">Report Anomaly</button>
+    </section>
+
+    <!-- ANALYST PAGE -->
+    <section id="analyst" class="page">
+      <h2>Data Analyst Portal</h2>
+      <p>Generate and view real-time election reports.</p>
+      <button onclick="generateReport()">Generate Report</button>
+      <div id="report"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Election Transparency Initiative</p>
+  </footer>
+
+  <script>
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+      window.scrollTo(0, 0);
+    }
+
+    function generateReport() {
+      const reportDiv = document.getElementById('report');
+      const data = [
+        { region: 'North', turnout: 72, anomalies: 1 },
+        { region: 'South', turnout: 65, anomalies: 3 },
+        { region: 'East', turnout: 80, anomalies: 0 },
+        { region: 'West', turnout: 69, anomalies: 2 }
+      ];
+
+      let html = `<table><tr><th>Region</th><th>Turnout (%)</th><th>Anomalies</th></tr>`;
+      data.forEach(r => {
+        html += `<tr><td>${r.region}</td><td>${r.turnout}</td><td>${r.anomalies}</td></tr>`;
+      });
+      html += `</table>`;
+      reportDiv.innerHTML = html;
+    }
+  </script>
+</body>
+</html>
